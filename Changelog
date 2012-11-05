@@ -1,7 +1,16 @@
+2012-11-05 Harald Schilly <harald.schilly@gmail.com>
+
+* Wrapping API calls
+
+* Improving tests
+
+* Python 3
+
+* Cleanup, wrong docstrings, ...
+
 2012-10-23  Thomas Steen Rasmussen <thomas@gibfest.dk>
 
 * Add "verifymessage" command
-
 
 2011-08-24  Wladimir van der Laan <laanwj@gmail.com>
 
