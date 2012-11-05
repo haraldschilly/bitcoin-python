@@ -62,6 +62,6 @@ if __name__ == "__main__":
     assert conn.balance == conn.getbalance()
 
     info = conn.getinfo()
-    print "Blocks: %i" % info.blocks
-    print "Connections: %i" % info.connections
-    print "Difficulty: %f" % info.difficulty
+    print("Blocks: %i" % info.blocks)
+    print("Connections: %i" % info.connections)
+    print("Difficulty: %f" % info.difficulty)

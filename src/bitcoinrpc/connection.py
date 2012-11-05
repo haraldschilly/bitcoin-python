@@ -30,7 +30,7 @@ def checked(f):
     def wrapper(*args, **kwds):
         try:
             return f(*args, **kwds)
-        except JSONRPCException,e:
+        except JSONRPCException as e:
             raise _wrap_exception(e.error)
     return wrapper
 
