@@ -10,4 +10,5 @@
    bitcoinrpc.exceptions.rst
    bitcoinrpc.data.rst
    bitcoinrpc.config.rst
+   bitcoinrpc.util.rst
 

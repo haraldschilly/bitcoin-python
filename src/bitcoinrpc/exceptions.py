@@ -23,7 +23,7 @@ Exception definitions.
 class BitcoinException(Exception):
     """
     Base class for exceptions received from Bitcoin server.
-    
+
     - *code* -- Error code from ``bitcoind``.
     """
     # Standard JSON-RPC 2.0 errors
@@ -57,7 +57,7 @@ class BitcoinException(Exception):
     WALLET_WRONG_ENC_STATE      = -15 # Command given in wrong wallet encryption state (encrypting an encrypted wallet etc.)
     WALLET_ENCRYPTION_FAILED    = -16 # Failed to encrypt the wallet
     WALLET_ALREADY_UNLOCKED     = -17 # Wallet is already unlocked
- 
+
     def __init__(self, error):
         Exception.__init__(self, error['message'])
         self.code = error['code']
@@ -138,5 +138,5 @@ def _wrap_exception(error):
     """
     Convert a JSON error object to a more specific Bitcoin exception.
     """
-    return _exception_map.get(error['code'], BitcoinException)(error)   
+    return _exception_map.get(error['code'], BitcoinException)(error)
 
