@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 '''
 Test script
 *WARNING* Don't run this on a production bitcoin server! *WARNING*
@@ -13,12 +14,12 @@ from decimal import Decimal
 
 if __name__ == "__main__":
     conn = bitcoinrpc.connect_to_local()
-    assert(conn.getinfo().testnet) # don't test on prodnet
+    assert conn.getinfo().testnet, "Don't test on prodnet!"
 
-    assert(type(conn.getblockcount()) is int)
-    assert(type(conn.getconnectioncount()) is int)
-    assert(type(conn.getdifficulty()) is Decimal)
-    assert(type(conn.getgenerate()) is bool)
+    assert type(conn.getblockcount()) is int
+    assert type(conn.getconnectioncount()) is int
+    assert type(conn.getdifficulty()) is Decimal
+    assert type(conn.getgenerate()) is bool
     conn.setgenerate(True)
     conn.setgenerate(True, 2)
     conn.setgenerate(False)
@@ -49,6 +50,16 @@ if __name__ == "__main__":
         txid = tx[0].txid
         txdata = conn.gettransaction(txid)
         assert(txdata.txid == tx[0].txid)
+
+    # properties
+    assert conn.block_count == conn.getblockcount()
+    assert conn.connection_count == conn.getconnectioncount()
+    assert conn.difficulty == conn.getdifficulty()
+    assert conn.is_generate == conn.getgenerate()
+    assert conn.hashes_per_second == conn.gethashespersec()
+    assert conn.info.__dict__ == conn.getinfo().__dict__
+    assert conn.accounts == conn.listaccounts()
+    assert conn.balance == conn.getbalance()
 
     info = conn.getinfo()
     print "Blocks: %i" % info.blocks

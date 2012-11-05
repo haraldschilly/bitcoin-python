@@ -75,6 +75,8 @@ class BitcoinConnection(object):
         """
         return self.proxy.getblockcount()
 
+    block_count = property(getblockcount)
+
     @checked
     def getblockhash(self, index):
         """
@@ -86,18 +88,13 @@ class BitcoinConnection(object):
         return self.proxy.getblockhash(index)
 
     @checked
-    def getblocknumber(self):
-        """
-        Returns the block number of the latest block in the longest block chain.
-        """
-        return self.proxy.getblocknumber()
-
-    @checked
     def getconnectioncount(self):
         """
         Returns the number of connections to other nodes.
         """
         return self.proxy.getconnectioncount()
+
+    connection_count = property(getconnectioncount)
 
     @checked
     def getdifficulty(self):
@@ -106,12 +103,16 @@ class BitcoinConnection(object):
         """
         return self.proxy.getdifficulty()
 
+    difficulty = property(getdifficulty)
+
     @checked
     def getgenerate(self):
         """
         Returns ``True`` or ``False``, depending on whether generation is enabled.
         """
         return self.proxy.getgenerate()
+
+    is_generate = property(getgenerate)
 
     @checked
     def setgenerate(self, generate, genproclimit=None):
@@ -136,12 +137,16 @@ class BitcoinConnection(object):
         """
         return self.proxy.gethashespersec()
 
+    hashes_per_second = property(gethashespersec)
+
     @checked
     def getinfo(self):
         """
         Returns an :class:`~bitcoinrpc.data.ServerInfo` object containing various state info.
         """
         return ServerInfo(**self.proxy.getinfo())
+
+    info = property(getinfo)
 
     @checked
     def getnewaddress(self, account=None):
@@ -296,6 +301,8 @@ class BitcoinConnection(object):
         """
         return [x for x in self.proxy.listaccounts(minconf)]
 
+    accounts = property(listaccounts, doc = 'list all account names')
+
     @checked
     def listreceivedbyaccount(self, minconf=1, includeempty=False):
         """
@@ -369,6 +376,8 @@ class BitcoinConnection(object):
             if minconf is not None:
                 args.append(minconf)
         return self.proxy.getbalance(*args)
+
+    balance = property(getbalance, doc = 'the current balance')
 
     @checked
     def move(self, fromaccount, toaccount, amount, minconf=1, comment=None):
